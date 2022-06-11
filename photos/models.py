@@ -1,5 +1,6 @@
 from django.db import models
 from cloudinary.models import CloudinaryField
+from django.contrib.auth import get_user_model
 
  
 User = get_user_model() 
@@ -22,8 +23,8 @@ class Profile(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE,related_name='profile')
     id_user = models.IntegerField()
     bio = models.TextField(blank=True)
-    email_address = models.EmailField(max_length = 150)
-    profileimg = CloudinaryField(upload_to='profile_images', default='blank-profile-picture.png')
+    email_address = models.EmailField(max_length=150,blank=True)
+    profileimg = CloudinaryField(default='blank-profile-picture.png')
     location = models.CharField(max_length=100, blank=True)
 
     def __str__(self):
