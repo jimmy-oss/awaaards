@@ -135,5 +135,10 @@ def settings(request):
         
         return redirect('settings')
     return render(request, 'setting.html', {'user_profile': user_profile})
+  
+@login_required(login_url='signin')
+def logout(request):
+    auth.logout(request)
+    return redirect('signin')
    
  
