@@ -16,6 +16,7 @@ class Photo (models.Model):
      category = models.ForeignKey(Category,on_delete=models.SET_NULL,null=True,blank=True)
      image = CloudinaryField('image')
      description = models.TextField()
+     submission_url = models.TextField()
  
  
  
