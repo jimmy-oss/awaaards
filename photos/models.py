@@ -24,7 +24,7 @@ class Profile(models.Model):
     id_user = models.IntegerField()
     bio = models.TextField(blank=True)
     email_address = models.EmailField(max_length=150,blank=True)
-    profileimg = CloudinaryField(default='https://res.cloudinary.com/dc6ecphjr/image/upload/v1654980533/blank-profile-picture_jitpja.png')
+    profileimg = models.ImageField(upload_to='profile_images', default='blank-profile-picture.png')
     location = models.CharField(max_length=100, blank=True)
 
     def __str__(self):
