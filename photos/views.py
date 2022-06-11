@@ -2,6 +2,7 @@ from django.shortcuts import render,redirect
 from .models  import Category, Photo,Profile
 from django.contrib import messages
 from django.contrib.auth.models import User,auth
+from django.contrib.auth.decorators import login_required
 
 # Create your views here.
 def  index(request):
@@ -28,8 +29,8 @@ def signup(request):
                
 
                 #log user in and redirect to settings page
-               # user_login = auth.authenticate(username=username, password=password)
-               # auth.login(request, user_login)
+                user_login = auth.authenticate(username=username, password=password)
+                auth.login(request, user_login)
 
                 #create a Profile object for the new user
                 user_model = User.objects.get(username=username)
@@ -102,5 +103,37 @@ def addPhoto (request):
 
        context = {'categories': category}
        return render(request, 'add.html', context)
+  
+@login_required(login_url='signin')
+def settings(request):
+    user_profile = Profile.objects.get(user=request.user)
+
+    if request.method == 'POST':
+        
+        if request.FILES.get('image') == None:
+            image = user_profile.profileimg
+            bio = request.POST['bio']
+            email_address = request.POST['email_address']
+            location = request.POST['location']
+
+            user_profile.profileimg = image
+            user_profile.bio = bio
+            user_profile.location = location
+            user_profile.email_address = email_address
+            user_profile.save()
+        if request.FILES.get('image') != None:
+            image = request.FILES.get('image')
+            bio = request.POST['bio']
+            email_address = request.POST['email_address']
+            location = request.POST['location']
+
+            user_profile.profileimg = image
+            user_profile.bio = bio
+            user_profile.location = location
+            user_profile.email_address = email_address
+            user_profile.save()
+        
+        return redirect('settings')
+    return render(request, 'setting.html', {'user_profile': user_profile})
    
  
