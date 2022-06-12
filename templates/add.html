@@ -4,7 +4,7 @@
 <head>
     <meta charset='utf-8'>
     <meta http-equiv='X-UA-Compatible' content='IE=edge'>
-    <link rel="shortcut icon" type="image/x-icon" href="/static/images/camera.ico">
+    <link href="/static/images/trophy.png" rel="icon" type="image/png" >
     <title>Add Photo</title>
     <meta name='viewport' content='width=device-width, initial-scale=1'>
 
@@ -37,7 +37,7 @@
                         <select name="category" class="form-control">
                             <option value='none'>Select a category...</option>
                             {% for category in categories %}
-                            <option value='{{category.id}}' style="font-family: 'Bubblegum Sans', cursive; font-size:20px">{{category.name}}</option>
+                            <option value='{{category.id}}' style="font-family: 'Bubblegum Sans', cursive; font-size:20px" required>{{category.name}}</option>
                             {% endfor %}
                         </select>
                     </div>
@@ -48,7 +48,11 @@
                     </div>
                     <div class="form-group m-3">
                         <label style="font-family: 'Bubblegum Sans', cursive; font-size:20px">Upload image</label>
-                        <input required name="image" type="file" multiple class="form-control-file">
+                        <input required name="image" type="file" multiple class="form-control-file" required>
+                    </div>
+                    <div class="form-group m-3">
+                        <label style="font-family: 'Bubblegum Sans', cursive; font-size:20px">Github live site</label>
+                        <input required name="submission_url" type="text" multiple class="form-control-file" required>
                     </div>
                     <button type='submit' class="btn btn-primary m-3" style="font-family:serif; font-size:20px">Submit</button>
                 </form>

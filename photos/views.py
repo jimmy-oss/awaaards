@@ -73,7 +73,7 @@ def gallery (request):
            
        category = Category.objects.all()
        context = {'categories':category,'photos':photos}
-       return render(request,'gallery.html',context)
+       return render(request,'index.html',context)
      
 def viewPhoto (request, pk):
        photo = Photo.objects.get(id=pk)
