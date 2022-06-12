@@ -15,12 +15,13 @@
     <link rel="stylesheet" href="{% static 'assets/css/uikit.css' %}">
     <link rel="stylesheet" href="{% static 'assets/css/style.css' %}">
     <link rel="stylesheet" href="{% static 'assets/css/tailwind.css' %}">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" integrity="sha512-9usAa10IRO0HhonpyAIVpjrylPvoDwiPUiKdWk5t3PyolY1cOd4DSE0Ga+ri4AuTroPR5aQvXU9xC6qOPnzFeg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <!-- CSS only -->
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/css/bootstrap.min.css" rel="stylesheet" 
 integrity="sha384-wEmeIV1mKuiNpC+IOBjI7aAzPcEZeedi5yW5f2yOq55WWLwNGmvvx4Um1vskeMj0"
 crossorigin="anonymous">    
 <link href="https://fonts.googleapis.com/css2?family=Bubblegum+Sans&display=swap" rel="stylesheet">
+ 
 <style>
     .image-thumbail{
              height: 200px;
@@ -39,8 +40,69 @@ crossorigin="anonymous">
       vertical-align: middle;
       font-family: 'Bubblegum Sans', cursive;
     }
-   
-       
+    .display-container {
+      margin: auto;
+      display: flex;
+      margin-left: 18rem;
+    }
+    
+    .note-display {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      margin: 0 25px;
+      
+    }
+    
+    .circle {
+      position: relative;
+    }
+    
+    .circle__svg {
+      transform: rotate(-90deg);
+    }
+    
+    .circle__progress {
+      fill: none;
+      stroke-width: 3;
+      stroke-opacity: 0.3;
+      stroke-linecap: round;
+    }
+    
+    .circle__progress--fill {
+      --initialStroke: 0;
+      --transitionDuration: 0;
+      stroke-opacity: 1;
+      stroke-dasharray: var(--initialStroke);
+      stroke-dashoffset: var(--initialStroke);
+      transition: stroke-dashoffset var(--transitionDuration) ease;
+    }
+    
+    .note-display:nth-child(1) .circle__progress { stroke: #AAFF00; }
+    .note-display:nth-child(2) .circle__progress { stroke: #FF00AA; }
+    .note-display:nth-child(3) .circle__progress { stroke: #AA00FF; }
+    .note-display:nth-child(4) .circle__progress { stroke: #00AAFF; }
+    
+    .percent {
+      width: 100%;
+      top: 50%;
+      left: 50%;
+      position: absolute;
+      font-weight: bold;
+      text-align: center;
+      line-height: 28px;
+      transform: translate(-50%, -50%);
+    }
+    
+    .percent__int { font-size: 28px; }
+    .percent__dec { font-size: 12px; }
+    
+    .label {
+      font-family: 'Raleway', serif;
+      font-size: 14px;
+      text-transform: uppercase;
+      margin-top: 15px;
+    }
   </style>
 </head>
 <body class="m-5" style="background: linear-gradient(to right, #3a1c71, #d76d77, #ffaf7b);">
@@ -73,25 +135,88 @@ crossorigin="anonymous">
                     </div>
                 </div>
             </header>
-            <p  style="text-align:center; font-size:40px; margin-left:2rem; font-family: 'Bubblegum Sans', cursive;">Project Awards</p>
+            <p  style="text-align:center; font-size:40px; margin-top:2rem; margin-left:2rem; font-family: 'Bubblegum Sans', cursive;">Project Awards</p>
             <div class="gallery"> 
-            <img src="/static/images/gallery.svg"  width="420" height="280" style="margin-left:25rem">
+            <img  src="/static/images/awards.svg"  width="420" height="280" style="margin-left:25rem;">
           </div>
+          <ul class="display-container">
+            <li class="note-display" data-note="7.50">
+              <div class="circle">
+                <svg width="84" height="84" class="circle__svg">
+                  <circle cx="41" cy="41" r="38" class="circle__progress circle__progress--path"></circle>
+                  <circle cx="41" cy="41" r="38" class="circle__progress circle__progress--fill"></circle>
+                </svg>
+        
+                <div class="percent">
+                  <span class="percent__int">0.</span>
+                  <span class="percent__dec">00</span>
+                </div>
+              </div>
+        
+              <span class="label" style="color: white; font-family: 'Bubblegum Sans', cursive; font-size:20px">Design</span>
+            </li>
+        
+            <li class="note-display" data-note="9.27">
+              <div class="circle">
+                <svg width="84" height="84" class="circle__svg">
+                  <circle cx="41" cy="41" r="38" class="circle__progress circle__progress--path"></circle>
+                  <circle cx="41" cy="41" r="38" class="circle__progress circle__progress--fill"></circle>
+                </svg>
+        
+                <div class="percent">
+                  <span class="percent__int">0.</span>
+                  <span class="percent__dec">00</span>
+                </div>
+              </div>
+        
+              <span class="label"style="color: white; font-family: 'Bubblegum Sans', cursive; font-size:20px;">Usability</span>
+            </li>
+        
+            <li class="note-display" data-note="6.93">
+              <div class="circle">
+                <svg width="84" height="84" class="circle__svg">
+                  <circle cx="41" cy="41" r="38" class="circle__progress circle__progress--path"></circle>
+                  <circle cx="41" cy="41" r="38" class="circle__progress circle__progress--fill"></circle>
+                </svg>
+        
+                <div class="percent">
+                  <span class="percent__int">0.</span>
+                  <span class="percent__dec">00</span>
+                </div>
+              </div>
+        
+              <span class="label"style="color: white; font-family: 'Bubblegum Sans', cursive; font-size:20px;">Content</span>
+            </li>
+        
+            <li class="note-display" data-note="8.72">
+              <div class="circle">
+                <svg width="84" height="84" class="circle__svg">
+                  <circle cx="41" cy="41" r="38" class="circle__progress circle__progress--path"></circle>
+                  <circle cx="41" cy="41" r="38" class="circle__progress circle__progress--fill"></circle>
+                </svg>
+        
+                <div class="percent">
+                  <span class="percent__int">0.</span>
+                  <span class="percent__dec">00</span>
+                </div>
+              </div>
+        
+              <span class="label"style="color: white; font-family: 'Bubblegum Sans', cursive; font-size:20px">Creativity</span>
+            </li>
+          </ul>
+          
             <nav class="navbar navbar-inverse">
               <div class="container-fluid">
                   <!-- Adding a search form  -->
                 <div class="col-sm-4 col-md-4 navbar-left" style="margin-left:40rem ;">
-          
                   <form class="navbar-form" role="category" action="{% url 'gallery' %}">
-          
                     <div class="input-group">
-                      <input type="text" class="form-control" placeholder="🔍   Search Travel" name="category"><a href="{% url 'gallery' %}?category={{category.name}}">{{category.name}}</li></a>
+                      <input type="text" class="form-control" placeholder="🔍   Search pizza" name="category"><a href="{% url 'gallery' %}?category={{category.name}}">{{category.name}}</li></a>
                       <a href="{% url 'admin:index' %}" class="btn btn-dark btn-block btn-sm m-1" style="font-family:serif; font-size:18px;">Admin</a>
                       <div class="input-group-btn">
                         <button class="btn btn-default" type="submit"><i class="glyphicon glyphicon-search"></i></button>
                       </div>
                     </div>
-          
                   </form>
                 </div>
                 <!-- search form end -->
@@ -127,7 +252,7 @@ crossorigin="anonymous">
                 </div>
                  {% empty %}
                  <div class="image"> 
-                 <img src="/static/images/404.svg" width="420" height="280" ><h3 style="margin-top:2rem ;">Page Not Found😔</h3>
+                 <img style="margin-left:12rem ;" src="/static/images/404.svg" width="420" height="280"><h3 style="margin-top:2rem;margin-left:6rem;">Page Not Found😔</h3>
                 </div>
                  {% endfor %}
                 </div>
@@ -136,9 +261,52 @@ crossorigin="anonymous">
             <footer>
               <h3 style="text-align: center; font-size: 28px; font-family: cursive; margin-left:18rem;margin-top:2rem"> Build with💖&copy; Jimmy-oss</h3>
               </footer>
-            
+
+              
  <!-- Scripts
     ================================================== -->
+     <script>
+      const displays = document.querySelectorAll('.note-display');
+      const transitionDuration = 900;
+      
+      displays.forEach(display => {
+        let note = parseFloat(display.dataset.note);
+        let [int, dec] = display.dataset.note.split('.');
+        [int, dec] = [Number(int), Number(dec)];
+      
+        strokeTransition(display, note);
+      
+        increaseNumber(display, int, 'int');
+        increaseNumber(display, dec, 'dec');
+      });
+      
+      function strokeTransition(display, note) {
+        let progress = display.querySelector('.circle__progress--fill');
+        let radius = progress.r.baseVal.value;
+        let circumference = 2 * Math.PI * radius;
+        let offset = circumference * (10 - note) / 10;
+      
+        progress.style.setProperty('--initialStroke', circumference);
+        progress.style.setProperty('--transitionDuration', `${transitionDuration}ms`);
+      
+        setTimeout(() => progress.style.strokeDashoffset = offset, 100);
+      }
+      
+      function increaseNumber(display, number, className) {
+        let element = display.querySelector(`.percent__${className}`),
+            decPoint = className === 'int' ? '.' : '',
+            interval = transitionDuration / number,
+            counter = 0;
+      
+        let increaseInterval = setInterval(() => {
+          if (counter === number) { window.clearInterval(increaseInterval); }
+      
+          element.textContent = counter + decPoint;
+          counter++;
+        }, interval);
+      }
+
+     </script>
     <script src="{% static 'assets/js/tippy.all.min.js' %}"></script>  
     <script src="{% static 'assets/js/jquery-3.3.1.min.js' %}"></script>
     <script src="{% static 'assets/js/uikit.js' %}"></script>
