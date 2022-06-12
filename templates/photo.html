@@ -17,6 +17,122 @@ integrity="sha384-wEmeIV1mKuiNpC+IOBjI7aAzPcEZeedi5yW5f2yOq55WWLwNGmvvx4Um1vskeM
   .background{
     background: linear-gradient(to right, #3a1c71, #d76d77, #ffaf7b);
   }
+  .skill-bars{
+    padding: 25px 30px;
+    width: 600px;
+    margin-left: 12rem;
+    border-radius: 10px;  
+  }
+  .bar span{
+    color: white;
+    text-shadow: 1px 1px black;
+  }
+  .skill-bars .bar{
+    margin: 20px 0;
+  }
+  .skill-bars .bar:first-child{
+    margin-top: 0px;
+  }
+  .skill-bars .bar .info{
+    margin-bottom: 5px;
+  }
+  .skill-bars .bar .info span{
+    font-weight: 500;
+    font-size: 17px;
+    opacity: 0;
+    animation: showText 0.5s 1s linear forwards;
+  }
+  @keyframes showText {
+    100%{
+      opacity: 1;
+    }
+  }
+  .skill-bars .bar .progress-line{
+    height: 10px;
+    width: 100%;
+    background: #f0f0f0;
+    position: relative;
+    transform: scaleX(0);
+    transform-origin: left;
+    border-radius: 10px;
+    box-shadow: inset 0 1px 1px rgba(0,0,0,0.05),
+                0 1px rgba(255,255,255,0.8);
+    animation: animate 1s cubic-bezier(1,0,0.5,1) forwards;
+  }
+  @keyframes animate {
+    100%{
+      transform: scaleX(1);
+    }
+  }
+  .bar .progress-line span{
+    height: 100%;
+    position: absolute;
+    border-radius: 10px;
+    transform: scaleX(0);
+    transform-origin: left;
+    background: #6665ee;
+    animation: animate 1s 1s cubic-bezier(1,0,0.5,1) forwards;
+  }
+  .bar .progress-line.html span{
+    width: 90%;
+  }
+  .bar .progress-line.css span{
+    width: 70%;
+  }
+  .bar .progress-line.jquery span{
+    width: 85%;
+  }
+  .bar .progress-line.python span{
+    width: 60%;
+  }
+  .bar .progress-line.mysql span{
+    width: 75%;
+  }
+  .progress-line span::before{
+    position: absolute;
+    content: "";
+    top: -10px;
+    right: 0;
+    height: 0;
+    width: 0;
+    border: 7px solid transparent;
+    border-bottom-width: 0px;
+    border-right-width: 0px;
+    border-top-color: #000;
+    opacity: 0;
+    animation: showText2 0.5s 1.5s linear forwards;
+  }
+  .progress-line span::after{
+    position: absolute;
+    top: -28px;
+    right: 0;
+    font-weight: 500;
+    background: #000;
+    color: #fff;
+    padding: 1px 8px;
+    font-size: 12px;
+    border-radius: 3px;
+    opacity: 0;
+    animation: showText2 0.5s 1.5s linear forwards;
+  }
+  @keyframes showText2 {
+    100%{
+      opacity: 1;
+    }
+  }
+  .progress-line.html span::after{
+    content: "9.27";
+  }
+  .progress-line.css span::after{
+    content: "7.50";
+  }
+  .progress-line.jquery span::after{
+    content: "8.72";
+  }
+  .progress-line.python span::after{
+    content: "6.93";
+  }
+ 
  </style>
 </head>
 <div class="background"> 
@@ -27,9 +143,43 @@ integrity="sha384-wEmeIV1mKuiNpC+IOBjI7aAzPcEZeedi5yW5f2yOq55WWLwNGmvvx4Um1vskeM
         <a href="{% url 'gallery' %}"  class="btn btn-dark my-3" style="font-family:serif; font-size:18px">Go back</a>
         <div style="height:70vh ;">
           <img style="max-width:100%; max-height:100%; margin-left:12em"  src="{{photo.image.url}}" >
+        </div>
+          <div class="skill-bars">
+            <div class="bar">
+              <div class="info">
+                <span>Design</span>
+              </div>
+              <div class="progress-line html">
+                <span></span>
+              </div>
+            </div>
+            <div class="bar">
+              <div class="info">
+                <span>Usability</span>
+              </div>
+              <div class="progress-line css">
+                <span></span>
+              </div>
+            </div>
+            <div class="bar">
+              <div class="info">
+                <span>Content</span>
+              </div>
+              <div class="progress-line jquery">
+                <span></span>
+              </div>
+            </div>
+            <div class="bar">
+              <div class="info">
+                <span>Creativity</span>
+              </div>
+              <div class="progress-line python">
+                <span></span>
+              </div>
+            </div>
           <p style="font-family: 'Berkshire Swash', cursive; font-size:20px;margin-top:2rem;text-align: center; margin-right:-10rem">{{photo.description}}</p>
           <p style="font-family: 'Berkshire Swash', cursive; font-size:20px;margin-top:2rem;text-align: center; margin-right:4rem"><img src="/static/images/github.svg" width="50px" height="50px">Github Link</p>
-          <button class="btn btn-dark copy-btn" style="font-family:serif; font-size:18px;margin-left:40rem;margin-top:-8rem" data-gallery="{{photo.submission_url}}" >Copy</button>
+          <button class="btn btn-dark copy-btn" style="font-family:serif; font-size:18px;margin-left:22rem;margin-top:-7.2rem;" data-gallery="{{photo.submission_url}}" >Copy</button>
         </div>
         </div>
       </div>
