@@ -84,6 +84,7 @@ def addPhoto (request):
        if request.method == 'POST':
         data = request.POST
         image = request.FILES.get('image')
+       
         
         if data['category'] != 'none':
             category = Category.objects.get(id=data['category'])
@@ -98,6 +99,7 @@ def addPhoto (request):
                 category=category,
                 description=data['description'],
                 image=image,
+               submission_url=data['submission_url']
             )
 
 
