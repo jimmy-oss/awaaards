@@ -5,10 +5,12 @@ from django.contrib.auth.models import User,auth
 from django.contrib.auth.decorators import login_required
 
 # Create your views here.
-def  index(request):
-        user_object = User.objects.get(username=request.user.username)
-        user_profile = Profile.objects.get(user=user_object)
-        return render(request, 'index.html', {'user_profile': user_profile})
+@login_required(login_url='signin')
+def index(request):
+    user_object = User.objects.get(username=request.user.username)
+    userprofile = Profile.objects.get(user=user_object)
+
+    return render(request, 'index.html', {'user_profile': userprofile})
 
 def signup(request):
 
@@ -73,12 +75,14 @@ def gallery (request):
            
        category = Category.objects.all()
        context = {'categories':category,'photos':photos}
+       
        return render(request,'index.html',context)
      
 def viewPhoto (request, pk):
        photo = Photo.objects.get(id=pk)
        return render(request,'photo.html',{'photo':photo})
-  
+   
+@login_required(login_url='signin')
 def addPhoto (request):
        category = Category.objects.all()
        if request.method == 'POST':
@@ -103,7 +107,7 @@ def addPhoto (request):
             )
 
 
-        return redirect('gallery')
+        return redirect('index')
 
        context = {'categories': category}
        return render(request, 'add.html', context)
