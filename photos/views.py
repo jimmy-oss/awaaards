@@ -1,5 +1,6 @@
+import email
 from django.shortcuts import render,redirect
-from .models  import Category, Photo,Profile
+from .models  import Category, Photo,Profile,Post
 from django.contrib import messages
 from django.contrib.auth.models import User,auth
 from django.contrib.auth.decorators import login_required
@@ -143,6 +144,26 @@ def settings(request):
         
         return redirect('settings')
     return render(request, 'setting.html', {'user_profile': user_profile})
+
+login_required(login_url='signin')
+def profile(request, pk):
+   
+    user_object = User.objects.get(username=pk)
+    user_profile = Profile.objects.get(user=user_object)
+    user_posts = Post.objects.filter(user=pk)
+    user_post_length = len(user_posts)
+
+    
+    user = pk  
+
+    context = {
+        'user_object': user_object,
+        'user_profile': user_profile,
+        'user_posts': user_posts,
+        'user_post_length': user_post_length
+        
+    }
+    return render(request, 'profile.html', context)
   
 @login_required(login_url='signin')
 def logout(request):

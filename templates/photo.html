@@ -178,6 +178,12 @@ integrity="sha384-wEmeIV1mKuiNpC+IOBjI7aAzPcEZeedi5yW5f2yOq55WWLwNGmvvx4Um1vskeM
           <p style="font-family: 'Berkshire Swash', cursive; font-size:20px;margin-top:2rem;text-align: center; margin-right:-10rem">{{photo.description}}</p>
           <p style="font-family: 'Berkshire Swash', cursive; font-size:20px;margin-top:2rem;text-align: center; margin-right:4rem"><img src="/static/images/github.svg" width="50px" height="50px">Github Link</p>
           <button class="btn btn-dark copy-btn" style="font-family:serif; font-size:18px;margin-left:22rem;margin-top:-7.2rem;" data-gallery="{{photo.submission_url}}" >Copy</button>
+          <div class="mt-10"> 
+          <form>
+            <textarea class="border rounded p-2 w-full" name="review" placeholder="Write your review here" rows="5"></textarea>
+            <button type="submit" class="float-right border rounded p-2 bg-gray-800 text-black">Submit</button>
+          </form>
+        </div>
         </div>
         </div>
       </div>
