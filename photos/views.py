@@ -1,6 +1,6 @@
 import email
 from django.shortcuts import render,redirect
-from .models  import Category, Photo,Profile,Post
+from .models  import Category, Photo,Profile,Post,Review
 from django.contrib import messages
 from django.contrib.auth.models import User,auth
 from django.contrib.auth.decorators import login_required
@@ -81,7 +81,8 @@ def gallery (request):
      
 def viewPhoto (request, pk):
        photo = Photo.objects.get(id=pk)
-       return render(request,'photo.html',{'photo':photo})
+       reviews = Review.objects.order_by('id') 
+       return render(request,'photo.html',{'photo':photo,'reviews':reviews})
    
 @login_required(login_url='signin')
 def addPhoto (request):
@@ -106,12 +107,17 @@ def addPhoto (request):
                 image=image,
                submission_url=data['submission_url']
             )
+         
 
-
-        return redirect('index')
-
+        return redirect('index') 
        context = {'categories': category}
        return render(request, 'add.html', context)
+   
+def review(request):
+         body = request.POST['review']
+         newReview = Review(body=body)
+         newReview.save()
+         return render(request, 'photo.html')
   
 @login_required(login_url='signin')
 def settings(request):
@@ -144,8 +150,8 @@ def settings(request):
         
         return redirect('settings')
     return render(request, 'setting.html', {'user_profile': user_profile})
-
-login_required(login_url='signin')
+     
+@login_required(login_url='signin')
 def profile(request, pk):
    
     user_object = User.objects.get(username=pk)
