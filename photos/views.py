@@ -1,6 +1,7 @@
 import email
 from django.shortcuts import render,redirect
 from .models  import Category, Photo,Profile,Post
+from .form import ReviewAdd
 from django.contrib import messages
 from django.contrib.auth.models import User,auth
 from django.contrib.auth.decorators import login_required
@@ -82,8 +83,8 @@ def gallery (request):
  
 def viewPhoto (request, pk):
        photo = Photo.objects.get(id=pk)
-       #reviews = Review.objects.order_by('id') 
-       return render(request,'photo.html',{'photo':photo,})
+       reviewForm=ReviewAdd()
+       return render(request,'photo.html',{'photo':photo,'form':reviewForm})
    
 @login_required(login_url='signin')
 def addPhoto (request):
