@@ -1,6 +1,6 @@
 import email
 from django.shortcuts import render,redirect
-from .models  import Category, Photo,Profile,Post,Review
+from .models  import Category, Photo,Profile,Post
 from django.contrib import messages
 from django.contrib.auth.models import User,auth
 from django.contrib.auth.decorators import login_required
@@ -79,10 +79,11 @@ def gallery (request):
        
        return render(request,'index.html',context)
      
+ 
 def viewPhoto (request, pk):
        photo = Photo.objects.get(id=pk)
-       reviews = Review.objects.order_by('id') 
-       return render(request,'photo.html',{'photo':photo,'reviews':reviews})
+       #reviews = Review.objects.order_by('id') 
+       return render(request,'photo.html',{'photo':photo,})
    
 @login_required(login_url='signin')
 def addPhoto (request):
@@ -109,15 +110,11 @@ def addPhoto (request):
             )
          
 
-        return redirect('index') 
+        return redirect('gallery') 
        context = {'categories': category}
        return render(request, 'add.html', context)
    
-def review(request):
-         body = request.POST['review']
-         newReview = Review(body=body)
-         newReview.save()
-         return render(request, 'photo.html')
+ 
   
 @login_required(login_url='signin')
 def settings(request):

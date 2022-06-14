@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
      'photos.apps.PhotosConfig',
+     'bootstrap5',
      'rest_framework',
 ]
 

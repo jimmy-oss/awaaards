@@ -3,6 +3,7 @@ from cloudinary.models import CloudinaryField
 from django.contrib.auth import get_user_model
 import uuid
 from datetime import datetime
+ 
 
  
 User = get_user_model() 
@@ -42,8 +43,21 @@ class Post(models.Model):
          
 def __str__(self):
          return self.user
-class Review(models.Model):
-         body = models.TextField()
-         created_at = models.DateTimeField(auto_now=True)
- 
- 
+RATING =(
+           (1,'1'),
+           (2,'2'),
+           (3,'3'),
+           (4,'4'),
+           (5,'5'),
+           (6,'6'),
+           (7,'7'),
+           (8,'8'),
+           (9,'9'),
+          (10,'10'),
+)
+class CategoryReview(models.Model):
+         user=models.ForeignKey(User, on_delete=models.CASCADE)
+         category=models.ForeignKey(Category,on_delete=models.SET_NULL,null=True,blank=True)
+         review_text=models.TextField()
+         review_rating=models.CharField(choices=RATING,max_length=150)
+         created_at=models.DateTimeField(auto_now=True)
