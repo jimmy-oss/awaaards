@@ -188,6 +188,8 @@ integrity="sha384-wEmeIV1mKuiNpC+IOBjI7aAzPcEZeedi5yW5f2yOq55WWLwNGmvvx4Um1vskeM
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
+        <form method='POST' action="" enctype="multipart/form-data">
+          {% csrf_token %}
         <h5 class="modal-title" id="categoryModalLabel">Project Review</h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
@@ -199,6 +201,7 @@ integrity="sha384-wEmeIV1mKuiNpC+IOBjI7aAzPcEZeedi5yW5f2yOq55WWLwNGmvvx4Um1vskeM
           <tr>
             <td colspan="2">
               <button type="submit" class="btn btn-primary">Submit</button>
+            </form>
             </td>
           </tr>
         </table>

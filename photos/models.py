@@ -16,6 +16,7 @@ def __str__ (self):
  
 class Photo (models.Model):
      category = models.ForeignKey(Category,on_delete=models.SET_NULL,null=True,blank=True)
+     user = models.CharField(max_length=100)
      image = CloudinaryField('image')
      description = models.TextField()
      submission_url = models.TextField()

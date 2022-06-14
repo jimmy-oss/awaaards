@@ -1,7 +1,7 @@
 import email
 from django.http import JsonResponse
 from django.shortcuts import render,redirect
-from .models  import Category, Photo,Profile,Post
+from .models  import Category, Photo,Profile,Post,CategoryReview
 from .form import ReviewAdd
 from django.contrib import messages
 from django.contrib.auth.models import User,auth
@@ -51,7 +51,7 @@ def signup(request):
         
     else:
         return render(request, 'signup.html')
- 
+    
 def signin(request):
     
     if request.method == 'POST':
@@ -68,7 +68,8 @@ def signin(request):
             return redirect('signin')
 
     else:
-        return render(request, 'signin.html')     
+        return render(request, 'signin.html')   
+    
  
 def gallery (request):
        category = request.GET.get('category')
@@ -96,6 +97,7 @@ def viewPhoto (request, pk):
 def addPhoto (request):
        category = Category.objects.all()
        if request.method == 'POST':
+        user = request.user.username
         data = request.POST
         image = request.FILES.get('image')
        
@@ -111,6 +113,7 @@ def addPhoto (request):
             
         photo = Photo.objects.create(
                 category=category,
+                 user=user,
                 description=data['description'],
                 image=image,
                submission_url=data['submission_url']
@@ -160,7 +163,7 @@ def profile(request, pk):
    
     user_object = User.objects.get(username=pk)
     user_profile = Profile.objects.get(user=user_object)
-    user_posts = Post.objects.filter(user=pk)
+    user_posts = Photo.objects.filter(user=pk)
     user_post_length = len(user_posts)
 
     
