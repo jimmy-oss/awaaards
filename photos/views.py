@@ -1,8 +1,7 @@
 import email
 from django.http import JsonResponse
 from django.shortcuts import render,redirect
-from .models  import Category, Photo,Profile,Post,CategoryReview
-from .form import ReviewAdd
+from .models  import Category, Photo,Profile
 from django.contrib import messages
 from django.contrib.auth.models import User,auth
 from django.contrib.auth.decorators import login_required
@@ -87,8 +86,7 @@ def gallery (request):
  
 def viewPhoto (request, pk):
        photo = Photo.objects.get(id=pk)
-       reviewForm=ReviewAdd()
-       return render(request,'photo.html',{'photo':photo,'form':reviewForm})
+       return render(request,'photo.html',{'photo':photo})
  
  
 
@@ -124,7 +122,26 @@ def addPhoto (request):
        context = {'categories': category}
        return render(request, 'add.html', context)
    
- 
+def Rate(request):
+      category = Category.objects.all()
+      user = request.user.username
+      if request.method == 'POST':
+          form = RateForm(request.POST)
+          if form.is_valid():
+              rate = form.save(commit=False)
+              rate.user = user
+              rate.category = category
+              rate.save()
+          return redirect('photo') 
+      else:
+          form=RateForm()
+          context = {
+        'form': form,
+        'category': category,
+    }
+      context = {'categories': category}
+      return render(request, 'photo.html',context)
+    
   
 @login_required(login_url='signin')
 def settings(request):

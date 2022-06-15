@@ -1,11 +1,11 @@
-from dataclasses import field
 from django import forms
-from .models import CategoryReview
+from .models import Review
 
-# Review Add Form
-class ReviewAdd(forms.ModelForm):
-         class Meta:
-                   model=CategoryReview
-                   fields=('review_text','review_rating')
+class ReviewForm(forms.ModelForm):
+	body = forms.CharField(widget=forms.Textarea(attrs={'class': 'materialize-textarea'}), required=False)
+
+	class Meta:
+		model = Review
+		fields = ('body',)
                    
  

@@ -40,25 +40,32 @@ class Post(models.Model):
          image = models.ImageField(upload_to = 'post_images')
          caption = models.TextField()
          created_at = models.DateTimeField(default=datetime.now)
-         
-         
+                 
 def __str__(self):
          return self.user
-RATING =(
-           (1,'1'),
-           (2,'2'),
-           (3,'3'),
-           (4,'4'),
-           (5,'5'),
-           (6,'6'),
-           (7,'7'),
-           (8,'8'),
-           (9,'9'),
-          (10,'10'),
-)
-class CategoryReview(models.Model):
-         user=models.ForeignKey(User, on_delete=models.CASCADE)
-         category=models.ForeignKey(Category,on_delete=models.SET_NULL,null=True,blank=True)
-         review_text=models.TextField()
-         review_rating=models.CharField(choices=RATING,max_length=150)
-         created_at=models.DateTimeField(auto_now=True)
+RATE_CHOICES =[
+      (1,'1-Trash'),
+      (2,'1-Horrible'),
+      (3,'1-Terrible'),
+      (4,'1-Bad'),
+      (5,'1-Average'),
+      (6,'1-Nice & Neat'),
+      (7,'1-Good'),
+      (8,'1-Very good'),
+      (9,'1-Perfect'),
+      (10,'1-Masterpiece'),
+]
+class Review(models.Model):
+          user = models.ForeignKey(User, on_delete=models.CASCADE)
+          category = models.ForeignKey(Category,on_delete=models.SET_NULL,null=True,blank=True)
+          created_at = models.DateTimeField(default=datetime.now)
+          text = models.TextField(max_length=3000, blank=True)
+          rate = models.PositiveSmallIntegerField(choices=RATE_CHOICES)
+          
+          
+def __str__(self):
+      return self.user.username     
+ 
+ 
+         
+ 
