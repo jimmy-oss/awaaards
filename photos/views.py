@@ -69,7 +69,7 @@ def signin(request):
     else:
         return render(request, 'signin.html')   
     
- 
+@login_required(login_url='signin')
 def gallery (request):
        category = request.GET.get('category')
        if category == None:
@@ -83,7 +83,7 @@ def gallery (request):
        return render(request,'index.html',context)
      
  
- 
+@login_required(login_url='signin')
 def viewPhoto (request, pk):
        photo = Photo.objects.get(id=pk)
        return render(request,'photo.html',{'photo':photo})
