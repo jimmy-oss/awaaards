@@ -1,4 +1,4 @@
-# 𝓼𝓱𝓲𝓷𝓲𝓷𝓰 𝓼𝓽𝓪𝓻 𝓪𝔀𝔀𝓪𝓻𝓭𝓼💞
+# Shining Star Awwards💞
 
 ![Screen Shot 2022-06-15 at 03 51 10](https://user-images.githubusercontent.com/62022158/173713727-c52ec9d5-2035-4895-973a-a5344a4c1ac9.png)
 
@@ -40,9 +40,9 @@ Create an `.env` and add the following.
 
 ```
 SECRET_KEY='<Secret_key>'
-DBNAME='<DbName>'
-USER='<Username>'
-PASSWORD='<password>'
+DB_NAME='<DbName>'
+DB_USER='<Username>'
+DB_PASSWORD='<password>'
 DEBUG=True
 DB_HOST='127.0.0.1'
 MODE='dev'
